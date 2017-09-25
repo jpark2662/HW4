@@ -80,7 +80,7 @@ write.table(df, "fivethirtyeightData.csv", sep=",", row.names = FALSE) #creates 
 
 # 3 GitHub Setup 
 # For 3A-3D See the link to the GitHub repository:
-https://github.com/jpark2662/JimParkMSDS_HW4.git
+https://github.com/jpark2662/HW4.git
 
 3A. Start a new repository on GitHub for your SMU MSDS homework. On your local
 device, make sure there is a directory for Homework at the minimum; you are
