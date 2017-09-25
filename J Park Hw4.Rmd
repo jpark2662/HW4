@@ -1,0 +1,102 @@
+---
+title: "HW4"
+output: 
+  html_document:
+  keep_md: true
+---
+# 1 FiveThirtyEight Data
+1a. Install the fivethirtyeight package. (commented out for the HTML version)
+```{r, ECHO=TRUE}
+# install.packages("fivethirtyeight") #commented out since the package was #  installed on first run.
+```
+1b. In the listing of Data sets in package 'fivethirtyeight,' assign the eighteenth data set to an object 'df.'
+The 18th data set (college_recent_grads) was found in the data produced from the data(package)="fivethirtyeight" code.
+
+```{r, ECHO=TRUE}
+library(fivethirtyeight)
+# To see a list of all data sets:
+data(package = "fivethirtyeight")
+df <- data.frame(college_recent_grads) #creates the data frame df from the designated file
+head(df) #Shows the first few lines of the data frame df
+```
+
+1C. Use a more detailed list of the data sets to write out the URL in a comment to the related news story.
+
+ANSWER(1C) URL Found per for college_recent_grads:
+http://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/
+Code below where URL was found (commented out for this exercise):
+```{r, ECHO=TRUE}
+# To see a more detailed list of all data sets, see the package vignette:
+#vignette("fivethirtyeight", package = "fivethirtyeight")
+```
+
+1D. Using (R) commands, give the dimensions and column names of this data frame.
+
+ANSWER 1D: 173 Rows and 21 Columns in the dataframe df.  Associated code and output below:
+```{r, ECHO=TRUE}
+dim(df) #gives the dimensions of the data frame df
+colnames(df)
+```
+
+# 2 Data Summary
+2A.Write an R command that gives you the column names of the data frame. Right after that, write one that counts the number of columns but not rows. Hint: The number should match one of your numbers in Question 1d for dimensions.
+
+ANSWER 2A.  Below is the associated code and printed the names of all of the columns, then the last item printed is the number of columns is 21.
+```{r, ECHO=TRUE}
+ColIndf <- colnames(df) #creates variable to store column names
+ColIndf #prints column names
+NumberOfCol <- length(ColIndf) #Counts number of columns and stores in variable
+NumberOfCol #Prints number of columns
+```
+
+2B.Generate a count of each unique major_category in the data frame. I recommend using libraries to help. I have demonstrated one briefly in live-session. To be clear, this should look like a matrix or data frame containing the major_category and the frequency it occurs in the dataset. Assign it to major_count.
+
+ANSWER 2B. Per the code and output below there are 16 unique major categories in the data frame.  Also the frequency that each major category occurs is seen in teh output below.
+```{r, ECHO=TRUE}
+library('plyr') # to call the count command
+major_count <- (df$major_category) #assigns variable to major_count
+length(unique(major_count)) #counts unique categories in major_count
+count(major_count) #Generates frequency table
+```
+
+2C. To make things easier to read, enter par(las=2) before your plot to make the text perpendicular to the axis. Make a barplot of major_count. Make sure to label the title with something informative (check the vignette if you need), label the x and y axis, and make it any color other than grey. Assign the major_category labels to their respective bar. Flip the barplot horizontally so that bars extend to the right, not upward. All of these options can be done in a single pass of barplot(). Note: It’s okay if it’s wider than the preview pane.
+
+ANSWER 2C:  Code and output beolow.  Did not attempt to fit overall width per instructions.
+
+```{r, fig.width = 10, ECHO=TRUE}
+library('plyr')
+MCPlot <- count(major_count) #creates the frequency vector
+par(las=2) #makes the names perpendicular in subsequent plot
+barplot(MCPlot$freq, horiz = TRUE, col = 'blue', names = MCPlot$x, xlim = c(0,30), xlab = 'Number of Majors', main= 'Number of Majors by Major Category') #plots names and frequencies
+```
+
+2D. Write the fivethirtyeight data to a csv file. Make sure that it does not have row labels.
+
+ANSWER 2D: The code below was successful in creating a .csv file in the current working diretory. It was not intended to place any output on the HTML file (knitted). 
+
+```{r, ECHO=TRUE}
+write.table(df, "fivethirtyeightData.csv", sep=",", row.names = FALSE) #creates a .csv file with the data frame used in this exercise.
+```
+
+# 3 GitHub Setup 
+# For 3A-3D See the link to the GitHub repository:
+https://github.com/jpark2662/JimParkMSDS_HW4.git
+
+3A. Start a new repository on GitHub for your SMU MSDS homework. On your local
+device, make sure there is a directory for Homework at the minimum; you are
+welcome to add whatever you would like to this repo in addition to your requirements
+here.
+
+3B. Create a README.md file which explains the purpose of the repository, the topics
+included, the sources for the material you post, and contact information in case of
+questions. Remember, the one in the root directory should be general. You are
+welcome to make short READMEs for each assignment individually in other folders.
+
+3C. In one (or more) of the nested directories, post your RMarkdown script, HTML file,
+and data from ‘fivethirtyeight.’ Make sure that in your README or elsewhere that
+you credit fivethirtyeight in some way.
+
+3D. In your RMarkdown script, please provide the link to this GitHub so the grader can see
+it.
+
+
