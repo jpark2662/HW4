@@ -4,6 +4,8 @@ output:
   html_document:
   keep_md: true
 ---
+# James Park, Doing Data Science 25SEP2017
+
 # 1 FiveThirtyEight Data
 1a. Install the fivethirtyeight package. (commented out for the HTML version)
 ```{r, ECHO=TRUE}
@@ -15,7 +17,7 @@ The 18th data set (college_recent_grads) was found in the data produced from the
 ```{r, ECHO=TRUE}
 library(fivethirtyeight)
 # To see a list of all data sets:
-data(package = "fivethirtyeight")
+data(package = "fivethirtyeight") #Prints a new tab called 'R data sets'
 df <- data.frame(college_recent_grads) #creates the data frame df from the designated file
 head(df) #Shows the first few lines of the data frame df
 ```
@@ -24,7 +26,7 @@ head(df) #Shows the first few lines of the data frame df
 
 ANSWER(1C) URL Found per for college_recent_grads:
 http://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/
-Code below where URL was found (commented out for this exercise):
+Code below (see vignett line) where URL was found (commented out for this exercise):
 ```{r, ECHO=TRUE}
 # To see a more detailed list of all data sets, see the package vignette:
 #vignette("fivethirtyeight", package = "fivethirtyeight")
@@ -51,7 +53,7 @@ NumberOfCol #Prints number of columns
 
 2B.Generate a count of each unique major_category in the data frame. I recommend using libraries to help. I have demonstrated one briefly in live-session. To be clear, this should look like a matrix or data frame containing the major_category and the frequency it occurs in the dataset. Assign it to major_count.
 
-ANSWER 2B. Per the code and output below there are 16 unique major categories in the data frame.  Also the frequency that each major category occurs is seen in teh output below.
+ANSWER 2B. Per the code and output below there are 16 unique major categories in the data frame.  Also the frequency that each major category occurs is seen in the output below.
 ```{r, ECHO=TRUE}
 library('plyr') # to call the count command
 major_count <- (df$major_category) #assigns variable to major_count
@@ -72,7 +74,7 @@ barplot(MCPlot$freq, horiz = TRUE, col = 'blue', names = MCPlot$x, xlim = c(0,30
 
 2D. Write the fivethirtyeight data to a csv file. Make sure that it does not have row labels.
 
-ANSWER 2D: The code below was successful in creating a .csv file in the current working diretory. It was not intended to place any output on the HTML file (knitted). 
+ANSWER 2D: The code below was successful in creating a .csv file in the current working diretory only for the data frame used in this exercise. It was not intended to place any output on the HTML file (knitted). 
 
 ```{r, ECHO=TRUE}
 write.table(df, "fivethirtyeightData.csv", sep=",", row.names = FALSE) #creates a .csv file with the data frame used in this exercise.
